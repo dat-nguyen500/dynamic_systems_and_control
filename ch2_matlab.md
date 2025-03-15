@@ -3,7 +3,7 @@
 '(ch2p1)'               % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p1)'
 ```
 
@@ -11,7 +11,7 @@ ans = '(ch2p1)'
 'How are you?'          % Display string.
 ```
 
-```matlabTextOutput
+```
 ans = 'How are you?'
 ```
 
@@ -19,7 +19,7 @@ ans = 'How are you?'
 -3.96                   % Display scalar number -3.96.
 ```
 
-```matlabTextOutput
+```
 ans = -3.9600
 ```
 
@@ -27,7 +27,7 @@ ans = -3.9600
 -4 + 7i                 % Display complex number -4 + 7i.
 ```
 
-```matlabTextOutput
+```
 ans = -4.0000 + 7.0000i
 ```
 
@@ -35,7 +35,7 @@ ans = -4.0000 + 7.0000i
 -5 - 6j                 % Display complex number -5 - 6j.
 ```
 
-```matlabTextOutput
+```
 ans = -5.0000 - 6.0000i
 ```
 
@@ -44,7 +44,7 @@ ans = -5.0000 - 6.0000i
 (-4 + 7i) + (-5 - 6i)   % Add two complex numbers and display sum.
 ```
 
-```matlabTextOutput
+```
 ans = -9.0000 + 1.0000i
 ```
 
@@ -52,7 +52,7 @@ ans = -9.0000 + 1.0000i
 (-4 + 7j) * (-5 - 6j)   % Multiply two complex numbers and display product.
 ```
 
-```matlabTextOutput
+```
 ans = 62.0000 -11.0000i
 ```
 
@@ -61,7 +61,7 @@ ans = 62.0000 -11.0000i
 M = 5                   % Assign 5 to M and display.
 ```
 
-```matlabTextOutput
+```
 M = 5
 ```
 
@@ -69,7 +69,7 @@ M = 5
 N = 6                   % Assign 6 to N and display.
 ```
 
-```matlabTextOutput
+```
 N = 6
 ```
 
@@ -77,7 +77,7 @@ N = 6
 P = M + N               % Assign M + N to P and display.
 ```
 
-```matlabTextOutput
+```
 P = 11
 ```
 
@@ -86,7 +86,7 @@ P = 11
 Q = 3 + 4j              % Define complex number Q.
 ```
 
-```matlabTextOutput
+```
 Q = 3.0000 + 4.0000i
 ```
 
@@ -94,7 +94,7 @@ Q = 3.0000 + 4.0000i
 MagQ = abs(Q)           % Find magnitude of Q.
 ```
 
-```matlabTextOutput
+```
 MagQ = 5
 ```
 
@@ -102,7 +102,7 @@ MagQ = 5
 ThetaQ = (180/pi) * angle(Q) % Find the angle of Q in degrees.
 ```
 
-```matlabTextOutput
+```
 ThetaQ = 53.1301
 ```
 
@@ -110,7 +110,7 @@ ThetaQ = 53.1301
 '(ch2p2)'               % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p2)'
 ```
 
@@ -118,7 +118,7 @@ ans = '(ch2p2)'
 P1 = [1 7 -3 23]        % Store polynomial s^3 + 7s^2 - 3s + 23 as P1 and display.
 ```
 
-```matlabTextOutput
+```
 P1 = 1x4
      1     7    -3    23
 
@@ -128,7 +128,7 @@ P1 = 1x4
 '(ch2p7)'               % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p7)'
 ```
 
@@ -137,7 +137,7 @@ ans = '(ch2p7)'
 numf = [7 9 12]         % Define numerator of F(s).
 ```
 
-```matlabTextOutput
+```
 numf = 1x3
      7     9    12
 
@@ -150,7 +150,7 @@ denf = conv(poly([0 -7]), [1 10 100]); % Define denominator of F(s).
 [K, p, k] = residue(numf, denf) % Find residues and assign to K;
 ```
 
-```matlabTextOutput
+```
 K = 4x1 complex
    0.2554 - 0.3382i
    0.2554 + 0.3382i
@@ -177,7 +177,7 @@ k =
 '(ch2p8) Example 2.3'   % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p8) Example 2.3'
 ```
 
@@ -189,7 +189,7 @@ deny = poly([0 -4 -8]); % Define denominator.
 [r, p, k] = residue(numy, deny) % Calculate residues, poles, and direct quotient.
 ```
 
-```matlabTextOutput
+```
 r = 3x1
      1
     -2
@@ -209,7 +209,7 @@ k =
 '(ch2p9)'                           % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p9)'
 ```
 
@@ -217,7 +217,7 @@ ans = '(ch2p9)'
 'Vector Method, Polynomial Form'    % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Vector Method, Polynomial Form'
 ```
 
@@ -229,7 +229,7 @@ denf = [1 5 4 0];                   % Store s(s + 1)(s + 4) in denf and display.
 'F(s)'                              % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'F(s)'
 ```
 
@@ -237,7 +237,7 @@ ans = 'F(s)'
 F = tf(numf, denf)                  % Form F(s) and display.
 ```
 
-```matlabTextOutput
+```
 F =
  
   150 s^2 + 300 s + 1050
@@ -255,7 +255,7 @@ clear                               % Clear previous variables from workspace.
 'Vector Method, Factored Form'       % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Vector Method, Factored Form'
 ```
 
@@ -268,7 +268,7 @@ K = 20;                              % Define K.
 'G(s)'                              % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'G(s)'
 ```
 
@@ -276,7 +276,7 @@ ans = 'G(s)'
 G = zpk(numg, deng, K)              % Form G(s) and display.
 ```
 
-```matlabTextOutput
+```
 G =
  
    20 (s+2) (s+4)
@@ -294,7 +294,7 @@ clear                               % Clear previous variables from workspace.
 'Rational Expression Method, Polynomial Form' % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Rational Expression Method, Polynomial Form'
 ```
 
@@ -304,7 +304,7 @@ s = tf('s');                        % Define 's' as an LTI object in polynomial 
 F = 150 * (s^2 + 2*s + 7) / (s * (s^2 + 5*s + 4))
 ```
 
-```matlabTextOutput
+```
 F =
  
   150 s^2 + 300 s + 1050
@@ -320,7 +320,7 @@ Model Properties
 G = 20 * (s + 2) * (s + 4) / ((s + 7) * (s + 8) * (s + 9))
 ```
 
-```matlabTextOutput
+```
 G =
  
      20 s^2 + 120 s + 160
@@ -339,7 +339,7 @@ clear                               % Clear previous variables from workspace.
 'Rational Expression Method, Factored Form'  % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Rational Expression Method, Factored Form'
 ```
 
@@ -349,7 +349,7 @@ s = zpk('s');                       % Define 's' as an LTI object in factored fo
 F = 150 * (s^2 + 2*s + 7) / (s * (s^2 + 5*s + 4))
 ```
 
-```matlabTextOutput
+```
 F =
  
   150 (s^2 + 2s + 7)
@@ -365,7 +365,7 @@ Model Properties
 G = 20 * (s + 2) * (s + 4) / ((s + 7) * (s + 8) * (s + 9))
 ```
 
-```matlabTextOutput
+```
 G =
  
    20 (s+2) (s+4)
@@ -384,7 +384,7 @@ Model Properties
 '(ch2p10)'                     % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p10)'
 ```
 
@@ -393,7 +393,7 @@ ans = '(ch2p10)'
 'Coefficients for F(s)'        % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Coefficients for F(s)'
 ```
 
@@ -404,7 +404,7 @@ denftf = [1 4 5 7];            % Form denominator of F(s).
 'Roots for F(s)'               % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Roots for F(s)'
 ```
 
@@ -412,7 +412,7 @@ ans = 'Roots for F(s)'
 [numfzp, denfzp] = tf2zp(numftf, denftf) 
 ```
 
-```matlabTextOutput
+```
 numfzp = 2x1 complex
   -2.0000 + 1.4142i
   -2.0000 - 1.4142i
@@ -430,7 +430,7 @@ denfzp = 3x1 complex
 'Roots for G(s)'               % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Roots for G(s)'
 ```
 
@@ -442,7 +442,7 @@ dengzp = [0 -3 -5];            % Form denominator of G(s) = 10(s + 2)(s + 4) / [
 'Coefficients for G(s)'        % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Coefficients for G(s)'
 ```
 
@@ -450,7 +450,7 @@ ans = 'Coefficients for G(s)'
 [numgtf, dengtf] = zp2tf(numgzp', dengzp', K) 
 ```
 
-```matlabTextOutput
+```
 numgtf = 1x4
      0    10    60    80
 
@@ -467,7 +467,7 @@ dengtf = 1x4
 '(ch2p11)'                     % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p11)'
 ```
 
@@ -476,7 +476,7 @@ ans = '(ch2p11)'
 'Fzpk1(s)'                     % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Fzpk1(s)'
 ```
 
@@ -487,7 +487,7 @@ Fzpk1 = zpk([-2 -4], [0 -3 -5], 10);
 'Ftf1'                         % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Ftf1'
 ```
 
@@ -497,7 +497,7 @@ Ftf1 = tf(Fzpk1);              % Convert Fzpk1(s) to coefficient form.
 'Ftf2'                         % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Ftf2'
 ```
 
@@ -508,7 +508,7 @@ Ftf2 = tf([10 40 60], [1 4 5 7]);
 'Fzpk2'                        % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = 'Fzpk2'
 ```
 
@@ -520,7 +520,7 @@ Fzpk2 = zpk(Ftf2);             % Convert Ftf2(s) to factored form.
 '(ch2p12)'                 % Display label.
 ```
 
-```matlabTextOutput
+```
 ans = '(ch2p12)'
 ```
 
