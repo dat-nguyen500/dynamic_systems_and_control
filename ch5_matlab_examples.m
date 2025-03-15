@@ -1,4 +1,3 @@
-%% 
 '(ch5p1) UFSS Pitch Control System'
 '& Feedback Commands'
 'Solution via Series, Parallel' % Display labels.
@@ -98,7 +97,6 @@ T = tf(T);                      % Create LTI closed-loop transfer
                                 % function.
 T = minreal(T)                  % Cancel common terms.
 
-%% 
 '(ch5p2) Example 5.3'           % Display label.
 numg = [25];                    % Define numerator of G(s).
 deng = poly([0 -5]);            % Define denominator of G(s).
@@ -115,7 +113,6 @@ Tp = pi/(wn*sqrt(1-z^2))        % Find peak time.
 pos = exp(-z*pi/sqrt(1-z^2))*100 % Find percent overshoot.
 step(T)                         % Generate step response.
 
-%% 
 '(ch5p3)'                       % Display label.
 numt = 24;                      % Define numerator of T(s).
 dent = poly([-2 -3 -4]);        % Define denominator of T(s).
@@ -135,7 +132,6 @@ Sp = canon(Scc, 'modal');       % Convert controller canonical form
 [Ap, Bp, Cp, Dp] = ssdata(Sp)   % Extract and display parallel form
                                 % matrices.
 
-%% 
 '(ch5p4) Example 5.9'           % Display label.
 Pinv = [2 0 0; 3 2 0; 1 4 5];   % Define P inverse.
 P = inv(Pinv)                   % Calculate P.
@@ -145,10 +141,9 @@ Bx = [0 0 1]                    % Define original B.
 Cx = [1 0 0]                    % Define original C.
 'Transformed'                   % Display label.
 Az = Pinv * Ax * P              % Calculate new A.
-Bz = Pinv * Bx                  % Calculate new B.
+Bz = Pinv * Bx'                 % Calculate new B.
 Cz = Cx * P                     % Calculate new C.
 
-%% 
 '(ch5p5)'                       % Display label.
 A = [3 1 5; 4 -2 7; 2 3 1];     % Define original A.
 B = [1; 2; 3];                  % Define original B.
