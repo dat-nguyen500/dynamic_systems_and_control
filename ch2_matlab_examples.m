@@ -1,47 +1,43 @@
-'(ch2p1)'               % Display label.
-'How are you?'          % Display string.
--3.96                   % Display scalar number -3.96.
--4 + 7i                 % Display complex number -4 + 7i.
--5 - 6j                 % Display complex number -5 - 6j.
+'(ch2p1)'                   % Display label.
+'How are you?'              % Display string.
+-3.96                       % Display scalar number -3.96.
+-4 + 7i                     % Display complex number -4 + 7i.
+-5 - 6j                     % Display complex number -5 - 6j.
 
-(-4 + 7i) + (-5 - 6i)   % Add two complex numbers and display sum.
-(-4 + 7j) * (-5 - 6j)   % Multiply two complex numbers and display product.
+(-4 + 7i) + (-5 - 6i)       % Add two complex numbers and display sum.
+(-4 + 7j) * (-5 - 6j)       % Multiply two complex numbers and display product.
 
-M = 5                   % Assign 5 to M and display.
-N = 6                   % Assign 6 to N and display.
-P = M + N               % Assign M + N to P and display.
+M = 5                       % Assign 5 to M and display.
+N = 6                       % Assign 6 to N and display.
+P = M + N                   % Assign M + N to P and display.
 
-Q = 3 + 4j              % Define complex number Q.
-MagQ = abs(Q)           % Find magnitude of Q.
+Q = 3 + 4j                  % Define complex number Q.
+MagQ = abs(Q)               % Find magnitude of Q.
 ThetaQ = (180/pi) * angle(Q) % Find the angle of Q in degrees.
 %% 
-% 
 
-'(ch2p2)'               % Display label.
-P1 = [1 7 -3 23]        % Store polynomial s^3 + 7s^2 - 3s + 23 as P1 and display.
+'(ch2p2)'                   % Display label.
+P1 = [1 7 -3 23]            % Store polynomial s^3 + 7s^2 - 3s + 23 as P1 and display.
 %% 
-% 
 
-'(ch2p7)'               % Display label.
+'(ch2p7)'                   % Display label.
 
-numf = [7 9 12]         % Define numerator of F(s).
+numf = [7 9 12]             % Define numerator of F(s).
 
 denf = conv(poly([0 -7]), [1 10 100]); % Define denominator of F(s).
 
 [K, p, k] = residue(numf, denf) % Find residues and assign to K;
-                                 % find roots of denominator and assign to p;
-                                 % find constant and assign to k.
+                                % find roots of denominator and assign to p;
+                                % find constant and assign to k.
 %% 
-% 
 
-'(ch2p8) Example 2.3'   % Display label.
+'(ch2p8) Example 2.3'       % Display label.
 
-numy = 32;              % Define numerator.
-deny = poly([0 -4 -8]); % Define denominator.
+numy = 32;                  % Define numerator.
+deny = poly([0 -4 -8]);     % Define denominator.
 
 [r, p, k] = residue(numy, deny) % Calculate residues, poles, and direct quotient.
 %% 
-% 
 
 '(ch2p9)'                           % Display label.
 'Vector Method, Polynomial Form'    % Display label.
@@ -54,11 +50,11 @@ F = tf(numf, denf)                  % Form F(s) and display.
 
 clear                               % Clear previous variables from workspace.
 
-'Vector Method, Factored Form'       % Display label.
+'Vector Method, Factored Form'      % Display label.
 
 numg = [-2 -4];                     % Store (s + 2)(s + 4) in numg and display.
 deng = [-7 -8 -9];                  % Store (s + 7)(s + 8)(s + 9) in deng and display.
-K = 20;                              % Define K.
+K = 20;                             % Define K.
 
 'G(s)'                              % Display label.
 G = zpk(numg, deng, K)              % Form G(s) and display.
@@ -83,7 +79,6 @@ F = 150 * (s^2 + 2*s + 7) / (s * (s^2 + 5*s + 4))
 G = 20 * (s + 2) * (s + 4) / ((s + 7) * (s + 8) * (s + 9))
                                     % Form G(s) as an LTI transfer function in factored form.
 %% 
-% 
 
 '(ch2p10)'                     % Display label.
 
@@ -104,30 +99,28 @@ dengzp = [0 -3 -5];            % Form denominator of G(s) = 10(s + 2)(s + 4) / [
 [numgtf, dengtf] = zp2tf(numgzp', dengzp', K) 
                                % Convert G(s) to polynomial form.
 %% 
-% 
 
 '(ch2p11)'                     % Display label.
 
 'Fzpk1(s)'                     % Display label.
 Fzpk1 = zpk([-2 -4], [0 -3 -5], 10);  
-                                % Form Fzpk1(s) = 10(s + 2)(s + 4) / [s(s + 3)(s + 5)].
+                               % Form Fzpk1(s) = 10(s + 2)(s + 4) / [s(s + 3)(s + 5)].
 
 'Ftf1'                         % Display label.
 Ftf1 = tf(Fzpk1);              % Convert Fzpk1(s) to coefficient form.
 
 'Ftf2'                         % Display label.
 Ftf2 = tf([10 40 60], [1 4 5 7]);  
-                                % Form Ftf2(s) = (10s^2 + 40s + 60) / (s^3 + 4s^2 + 5s + 7).
+                               % Form Ftf2(s) = (10s^2 + 40s + 60) / (s^3 + 4s^2 + 5s + 7).
 
 'Fzpk2'                        % Display label.
 Fzpk2 = zpk(Ftf2);             % Convert Ftf2(s) to factored form.
 %% 
-% 
 
-'(ch2p12)'                 % Display label.
+'(ch2p12)'                     % Display label.
 
-t = 0:0.01:10;             % Specify time range and increment.
-f1 = cos(5 * t);           % Define f1 as cos(5t).
-f2 = sin(5 * t);           % Define f2 as sin(5t).
+t = 0:0.01:10;                 % Specify time range and increment.
+f1 = cos(5 * t);               % Define f1 as cos(5t).
+f2 = sin(5 * t);               % Define f2 as sin(5t).
 
 plot(t, f1, 'r', t, f2, 'g');  % Plot f1 in red and f2 in green.
