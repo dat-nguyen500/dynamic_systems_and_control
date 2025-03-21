@@ -61,7 +61,7 @@ void loop() {
     // Cứ mỗi 100ms ghi dữ liệu
     if (currentTime - lastTime >= 100) {
       float angle = pulseCount * 0.1 * PI;
-      Serial.print(currentTime - startTime);
+      Serial.print(pwmValue * 10 / 255);
       Serial.print(",");
       Serial.println(angle, 10);
       lastTime = currentTime;
