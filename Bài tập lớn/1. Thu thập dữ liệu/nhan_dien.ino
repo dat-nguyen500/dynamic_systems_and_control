@@ -1,32 +1,34 @@
-const int buttonPin = 12;    // Chân nút nhấn với pull-up
-const int encoderPin = 2;    // Chân tín hiệu encoder
-const int pwmPin = 6;        // Chân PWM cho driver động cơ
+const int buttonPin = 12;      // Chân nút nhấn với pull-up
+const int encoderPin = 2;      // Chân tín hiệu encoder
+const int pwmPin = 6;          // Chân PWM cho driver động cơ
 
-volatile long pulseCount = 0; // Biến đếm xung từ encoder
-bool motorRunning = false;    // Trạng thái động cơ
-unsigned long lastTime = 0;   // Thời gian trước để tính 100ms
-unsigned long startTime = 0;  // Thời gian bắt đầu chạy động cơ
+volatile long pulseCount = 0;  // Biến đếm xung từ encoder
+bool motorRunning = false;     // Trạng thái động cơ
+unsigned long lastTime = 0;    // Thời gian trước để tính 100ms
+unsigned long startTime = 0;   // Thời gian bắt đầu chạy động cơ
 
 void setup() {
-  pinMode(buttonPin, INPUT);    // Chân nút nhấn là input (pull-up sẵn)
-  pinMode(encoderPin, INPUT);   // Chân encoder là input
-  pinMode(pwmPin, OUTPUT);      // Chân PWM là output
+  pinMode(buttonPin, INPUT);   // Chân nút nhấn là input (pull-up sẵn)
+  pinMode(encoderPin, INPUT);  // Chân encoder là input
+  pinMode(pwmPin, OUTPUT);     // Chân PWM là output
   
-  Serial.begin(9600);           // Khởi động Serial
-  attachInterrupt(digitalPinToInterrupt(encoderPin), countPulse, RISING);                                   // Ngắt khi có cạnh lên
-  
+  Serial.begin(9600);          // Khởi động Serial
+  attachInterrupt(digitalPinToInterrupt(encoderPin), countPulse, RISING);                                   
+                               // Ngắt khi có cạnh lên
+
   // Tiêu đề cho file TXT
   Serial.println("Time(ms),Angle(rad)");
 }
 
 void loop() {
   // Kiểm tra trạng thái nút nhấn
-  if (digitalRead(buttonPin) == LOW) { // Nút nhấn pull-up nên LOW là khi nhấn
-    delay(50); // Chống dội nút
+  // Nút nhấn pull-up nên LOW là khi nhấn
+  if (digitalRead(buttonPin) == LOW) {
+    delay(50);                // Chống dội nút
     if (digitalRead(buttonPin) == LOW && !motorRunning) {
-      motorRunning = true; // Bật động cơ
-      pulseCount = 0;      // Reset số đếm xung khi bắt đầu
-      startTime = millis(); // Lưu thời gian bắt đầu
+      motorRunning = true;    // Bật động cơ
+      pulseCount = 0;         // Reset số đếm xung khi bắt đầu
+      startTime = millis();   // Lưu thời gian bắt đầu
       analogWrite(pwmPin, 255); // PWM 100% (255/255)
     }
   }
