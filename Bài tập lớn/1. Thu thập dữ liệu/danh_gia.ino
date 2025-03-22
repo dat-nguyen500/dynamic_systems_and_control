@@ -50,7 +50,7 @@ void loop() {
     } else if (elapsedTime < 20000) {
       pwmValue = 255 * 0.35 + 1; // 35%
     } else if (elapsedTime < 30000) {
-      pwmValue = 255 * 0.4 + 1;  // 40%
+      pwmValue = 255 * 0.4;  // 40%
     } else if (elapsedTime < 40000) {
       pwmValue = 255 * 0.45 + 1; // 45%
     } else {
