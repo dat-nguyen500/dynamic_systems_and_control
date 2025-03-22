@@ -46,22 +46,22 @@ void loop() {
     // Điều chỉnh mức PWM theo thời gian
     int pwmValue = 0;
     if (elapsedTime < 10000) {
-      pwmValue = 255 * 0.3;  // 30%
+      pwmValue = 255 * 0.3 + 1;  // 30%
     } else if (elapsedTime < 20000) {
-      pwmValue = 255 * 0.35; // 35%
+      pwmValue = 255 * 0.35 + 1; // 35%
     } else if (elapsedTime < 30000) {
-      pwmValue = 255 * 0.4;  // 40%
+      pwmValue = 255 * 0.4 + 1;  // 40%
     } else if (elapsedTime < 40000) {
-      pwmValue = 255 * 0.45; // 45%
+      pwmValue = 255 * 0.45 + 1; // 45%
     } else {
-      pwmValue = 255 * 0.5;  // 50%
+      pwmValue = 255 * 0.5 + 1;  // 50%
     }
     analogWrite(pwmPin, pwmValue);
     
     // Cứ mỗi 100ms ghi dữ liệu
     if (currentTime - lastTime >= 100) {
       float angle = pulseCount * 0.1 * PI;
-      Serial.print(pwmValue * 10 / 255);
+      Serial.print(pwmValue * 10.0 / 255, 1);
       Serial.print(",");
       Serial.println(angle, 10);
       lastTime = currentTime;
