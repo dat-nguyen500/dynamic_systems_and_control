@@ -7,7 +7,7 @@ unsigned long lastPulseCount = 0;
 unsigned long lastTime = 0;
 unsigned long startTime = 0;
 const int sampleInterval = 100;  // Đo mỗi 0.1 giây (100ms)
-const int pulsesPerRev = 20;     // Encoder trả 20 xung/vòng
+const int pulsesPerRev = 20;     // Giả định 20 xung/vòng
 bool motorRunning = false;
 
 void setup() {
@@ -39,7 +39,7 @@ void loop() {
       lastTime = currentTime;
     }
     
-    if (currentTime - startTime >= 50000) { // Động cơ dừng chạy sau 50 giây
+    if (currentTime - startTime >= 50000) {
       stopMotor();
     }
   }
@@ -57,7 +57,7 @@ void countPulse() {
 }
 
 void startMotor() {
-  analogWrite(pwmPin, 85);  // Ứng với 3 V đầu vào cho động cơ
+  analogWrite(pwmPin, 197); // Ứng với 6V đầu vào
   pulseCount = 0;
   lastPulseCount = 0;
   startTime = millis();
@@ -77,7 +77,7 @@ void calculateAngularDisplacement(unsigned long currentTime) {
   float angularDisplacement = revolutions * 2 * PI;              // Chuyển vị góc (radian)
   
   // Xuất dạng TXT: điện áp, chuyển vị góc (rad)
-  Serial.print("3,");
+  Serial.print("6,");
   Serial.println(angularDisplacement, 10);
 }
 
