@@ -12,7 +12,7 @@ data1 = iddata(theta1, V1, Ts);
 % Thiết lập tùy chọn
 opt = tfestOptions('InitialCondition', 'zero');
 
-% Ước lượng hàm truyền (thử 2 cực, 1 zero)
+% Ước lượng hàm truyền (3 cực, 0 zero)
 sys = tfest(data, 3, 0, opt)
 
 % Kiểm tra trên tập dữ liệu đánh giá
