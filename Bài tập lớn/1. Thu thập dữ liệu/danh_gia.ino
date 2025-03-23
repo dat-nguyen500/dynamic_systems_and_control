@@ -1,75 +1,87 @@
-const int buttonPin = 12;      // Chân nút nhấn với pull-up
-const int encoderPin = 2;      // Chân tín hiệu encoder
-const int pwmPin = 6;          // Chân PWM cho driver động cơ
+const int buttonPin = 12;    // Chân nút nhấn
+const int pwmPin = 6;        // Chân PWM điều khiển driver
+const int encoderPin = 2;    // Chân tín hiệu encoder
 
-volatile long pulseCount = 0;  // Biến đếm xung từ encoder
-bool motorRunning = false;     // Trạng thái động cơ
-unsigned long lastTime = 0;    // Thời gian trước để tính 100ms
-unsigned long startTime = 0;   // Thời gian bắt đầu chạy động cơ
+volatile unsigned long pulseCount = 0;
+unsigned long lastPulseCount = 0;
+unsigned long lastTime = 0;
+unsigned long startTime = 0;
+const int sampleInterval = 100;  // Đo mỗi 0.1 giây (100ms)
+const int pulsesPerRev = 20;     // Encoder trả 20 xung/vòng
+bool motorRunning = false;
 
 void setup() {
-  pinMode(buttonPin, INPUT);   // Chân nút nhấn là input (pull-up sẵn)
-  pinMode(encoderPin, INPUT);  // Chân encoder là input
-  pinMode(pwmPin, OUTPUT);     // Chân PWM là output
+  pinMode(buttonPin, INPUT);
+  pinMode(pwmPin, OUTPUT);
+  pinMode(encoderPin, INPUT);
   
-  Serial.begin(9600);          // Khởi động Serial
-  attachInterrupt(digitalPinToInterrupt(encoderPin), countPulse, RISING);                                   
-                               // Ngắt khi có cạnh lên
-
-  // Tiêu đề cho file TXT
-  Serial.println("Time(ms),Angle(rad)");
+  attachInterrupt(digitalPinToInterrupt(encoderPin), countPulse, RISING);
+  Serial.begin(9600);
 }
 
 void loop() {
-  // Kiểm tra trạng thái nút nhấn
-  if (digitalRead(buttonPin) == LOW) {
-    delay(50);                // Chống dội nút
-    if (digitalRead(buttonPin) == LOW && !motorRunning) {
-      motorRunning = true;    // Bật động cơ
-      pulseCount = 0;         // Reset số đếm xung khi bắt đầu
-      startTime = millis();   // Lưu thời gian bắt đầu
+  static bool lastButtonState = HIGH;
+  bool currentButtonState = digitalRead(buttonPin);
+  
+  if (currentButtonState == LOW && lastButtonState == HIGH && !motorRunning) {
+    delay(50);
+    if (digitalRead(buttonPin) == LOW) {
+      startMotor();
     }
   }
-
-  // Nếu động cơ đang chạy
+  lastButtonState = currentButtonState;
+  
   if (motorRunning) {
     unsigned long currentTime = millis();
-    unsigned long elapsedTime = currentTime - startTime;
-
-    // Kiểm tra nếu đã chạy được 50 giây
-    if (elapsedTime >= 50000) { // 50 giây = 50000ms
-      motorRunning = false; // Tắt động cơ
-      analogWrite(pwmPin, 0); // Dừng PWM
-      return; // Thoát vòng lặp để không ghi thêm
-    }
-
-    // Điều chỉnh mức PWM theo thời gian
-    int pwmValue = 0;
-    if (elapsedTime < 10000) {
-      pwmValue = 255 * 0.3 + 1;  // 30%
-    } else if (elapsedTime < 20000) {
-      pwmValue = 255 * 0.35 + 1; // 35%
-    } else if (elapsedTime < 30000) {
-      pwmValue = 255 * 0.4;  // 40%
-    } else if (elapsedTime < 40000) {
-      pwmValue = 255 * 0.45 + 1; // 45%
-    } else {
-      pwmValue = 255 * 0.5 + 1;  // 50%
-    }
-    analogWrite(pwmPin, pwmValue);
     
-    // Cứ mỗi 100ms ghi dữ liệu
-    if (currentTime - lastTime >= 100) {
-      float angle = pulseCount * 0.1 * PI;
-      Serial.print(pwmValue * 10.0 / 255, 1);
-      Serial.print(",");
-      Serial.println(angle, 10);
+    if (currentTime - lastTime >= sampleInterval) {
+      calculateAngularDisplacement(currentTime);
       lastTime = currentTime;
+    }
+    
+    if (currentTime - startTime >= 50000) { // Động cơ dừng chạy sau 50 giây
+      stopMotor();
     }
   }
 }
 
-// Hàm xử lý ngắt để đếm xung từ encoder
 void countPulse() {
-  pulseCount++;
+  static unsigned long lastPulseTime = 0;
+  unsigned long currentPulseTime = micros();
+  
+  // Lọc nhiễu: 1000 microseconds (1ms)
+  if (currentPulseTime - lastPulseTime >= 1000) {
+    pulseCount++;
+    lastPulseTime = currentPulseTime;
+  }
+}
+
+void startMotor() {
+  analogWrite(pwmPin, 85);  // Ứng với 3 V đầu vào cho động cơ
+  pulseCount = 0;
+  lastPulseCount = 0;
+  startTime = millis();
+  lastTime = startTime;
+  motorRunning = true;
+}
+
+void calculateAngularDisplacement(unsigned long currentTime) {
+  noInterrupts();
+  unsigned long pulses = pulseCount - lastPulseCount;
+  lastPulseCount = pulseCount;
+  interrupts();
+  
+  // Tính toán chuyển vị góc
+  float timeElapsed = (float)(currentTime - startTime) / 1000.0;  // Thời gian từ lúc bắt đầu (giây)
+  float revolutions = (float)pulseCount / pulsesPerRev;          // Tổng số vòng từ lúc bắt đầu
+  float angularDisplacement = revolutions * 2 * PI;              // Chuyển vị góc (radian)
+  
+  // Xuất dạng TXT: điện áp, chuyển vị góc (rad)
+  Serial.print("3,");
+  Serial.println(angularDisplacement, 10);
+}
+
+void stopMotor() {
+  analogWrite(pwmPin, 0);
+  motorRunning = false;
 }
