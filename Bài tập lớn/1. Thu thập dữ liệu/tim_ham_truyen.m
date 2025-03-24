@@ -36,3 +36,4 @@ step(G);
 
 % Thông tin hàm bước
 stepinfo(G)
+%
