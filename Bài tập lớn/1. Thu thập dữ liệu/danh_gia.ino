@@ -57,7 +57,7 @@ void countPulse() {
 }
 
 void startMotor() {
-  analogWrite(pwmPin, 84); // Ứng với 3V đầu vào
+  analogWrite(pwmPin, 85); // Ứng với 3V đầu vào
   pulseCount = 0;
   lastPulseCount = 0;
   startTime = millis();
